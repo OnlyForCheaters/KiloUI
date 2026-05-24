@@ -585,8 +585,8 @@ function Koli:CreateWindow(args)
         local edges = {}
         for _, d in pairs({"TR", "TL", "BR", "BL", "T", "B", "L", "R"}) do
             local e = mk("Frame", {
-                Size = d == "T" or d == "B" and UDim2.new(1, 0, 0, 4) or
-                       d == "L" or d == "R" and UDim2.new(0, 4, 1, 0) or
+                Size = (d == "T" or d == "B") and UDim2.new(1, 0, 0, 4) or
+                       (d == "L" or d == "R") and UDim2.new(0, 4, 1, 0) or
                        UDim2.new(0, 6, 0, 6),
                 Position = d == "T" and UDim2.new(0, 0, 0, 0) or
                            d == "B" and UDim2.new(0, 0, 1, -4) or
