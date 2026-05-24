@@ -220,7 +220,8 @@ function Koli:Dialog(args)
         BackgroundTransparency = 1, Text = text, TextColor3 = Color3.fromRGB(160, 160, 180),
         TextSize = 12, Font = Enum.Font.Gotham, TextWrapped = true,
         TextXAlignment = Enum.TextXAlignment.Left, RichText = true
-    }, nil).Parent = f
+    }, nil)
+    cl.Parent = f
 
     -- wait for textbounds
     task.wait()
