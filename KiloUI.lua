@@ -596,7 +596,7 @@ function Koli:CreateWindow(args)
                            d == "TR" and UDim2.new(1, -6, 0, 0) or
                            d == "BL" and UDim2.new(0, 0, 1, -6) or
                            d == "BR" and UDim2.new(1, -6, 1, -6),
-                BackgroundTransparency = 1, Parent = main, Cursor = d
+                BackgroundTransparency = 1, Parent = main
             })
             e.InputBegan:Connect(function(input)
                 if input.UserInputType == Enum.UserInputType.MouseButton1 then
