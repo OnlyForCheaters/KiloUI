@@ -228,15 +228,16 @@ function Koli:Dialog(args)
     cl.Size = UDim2.new(1, -20, 0, th)
     local yOff = 38 + th + 10
 
-    local btnLayout = mk("UIListLayout", {
+    local btnLayout = mk("Frame", {
+        Size = UDim2.new(1, -20, 0, 30), Position = UDim2.new(0, 10, 0, yOff),
+        BackgroundTransparency = 1, Parent = f
+    })
+    mk("UIListLayout", {
         FillDirection = Enum.FillDirection.Horizontal,
         HorizontalAlignment = Enum.HorizontalAlignment.Center,
         VerticalAlignment = Enum.VerticalAlignment.Center,
         Padding = UDim.new(0, 8)
-    }, nil).Parent = mk("Frame", {
-        Size = UDim2.new(1, -20, 0, 30), Position = UDim2.new(0, 10, 0, yOff),
-        BackgroundTransparency = 1, Parent = f
-    })
+    }, nil).Parent = btnLayout
 
     for _, b in pairs(btns) do
         local btn = mk("TextButton", {
@@ -966,7 +967,7 @@ function Koli:CreateWindow(args)
                     BorderSizePixel = 0, Visible = false, Parent = secContent
                 })
                 mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = dropFrame
-                local dropLayout = mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = dropFrame
+                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = dropFrame
 
                 function refreshDropdown()
                     for _, c in pairs(dropFrame:GetChildren()) do
@@ -1031,7 +1032,7 @@ function Koli:CreateWindow(args)
                     BorderSizePixel = 0, Visible = false, Parent = secContent
                 })
                 mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = dropFrame
-                local dropLayout = mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = dropFrame
+                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = dropFrame
 
                 function refresh()
                     for _, c in pairs(dropFrame:GetChildren()) do
@@ -1324,7 +1325,7 @@ function Koli:CreateWindow(args)
                     BorderSizePixel = 0, Parent = secContent
                 })
                 mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = listFrame
-                local listLayout = mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = listFrame
+                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = listFrame
 
                 local function refresh()
                     for _, c in pairs(listFrame:GetChildren()) do
@@ -1479,7 +1480,7 @@ function Koli:CreateWindow(args)
                     BackgroundColor3 = Theme.Input, BorderSizePixel = 0, Parent = secContent
                 })
                 mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = groupFrame
-                local gli = mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = groupFrame
+                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = groupFrame
                 local btns = {}
                 for i, opt in pairs(opts) do
                     local b = mk("TextButton", {
@@ -1546,7 +1547,7 @@ function Koli:CreateWindow(args)
                     ScrollBarThickness = 2, CanvasSize = UDim2.new(0, 0, 0, 0),
                     Parent = bg
                 })
-                local sl = mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = sf
+                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = sf
                 local lines = {}
                 local obj = {}
                 function obj:Log(text, color)
@@ -1757,7 +1758,7 @@ function Koli:ShowContextMenu(items, x, y)
     })
     mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = _ctxMenu
     mk("UIStroke", {Color = Color3.fromRGB(50, 50, 65)}, nil).Parent = _ctxMenu
-    local layout = mk("UIListLayout", {Padding = UDim.new(0, 2), SortOrder = Enum.SortOrder.LayoutOrder}, nil).Parent = _ctxMenu
+    mk("UIListLayout", {Padding = UDim.new(0, 2), SortOrder = Enum.SortOrder.LayoutOrder}, nil).Parent = _ctxMenu
     mk("UIPadding", {PaddingLeft = UDim.new(0, 3), PaddingRight = UDim.new(0, 3), PaddingTop = UDim.new(0, 2)}, nil).Parent = _ctxMenu
     for _, item in pairs(items) do
         local b = mk("TextButton", {
