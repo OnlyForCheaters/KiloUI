@@ -108,12 +108,12 @@ function Koli:MakeToast(text, dur, color)
         BackgroundColor3 = col, BorderSizePixel = 0,
         Parent = parent
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = f
+    mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = f})
     mk("TextLabel", {
         Size = UDim2.new(1, -10, 1, 0), Position = UDim2.new(0, 5, 0, 0),
         BackgroundTransparency = 1, Text = text, TextColor3 = Color3.new(1, 1, 1),
-        TextSize = 12, Font = Enum.Font.Gotham
-    }, nil).Parent = f
+        TextSize = 12, Font = Enum.Font.Gotham, Parent = f
+    })
     task.spawn(function()
         task.wait(dur)
         TS:Create(f, TweenInfo.new(0.3), {Position = UDim2.new(0.5, -100, 1, 10)}):Play()
@@ -133,19 +133,19 @@ function Koli:MakeNotification(args)
         Size = UDim2.new(0, 280, 0, 50), Position = UDim2.new(1, -290, 1, -60),
         BackgroundColor3 = theme.Second, BorderSizePixel = 0, Parent = parent
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = f
-    mk("UIStroke", {Color = theme.Border}, nil).Parent = f
+    mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = f})
+    mk("UIStroke", {Color = theme.Border, Parent = f})
     mk("TextLabel", {
         Size = UDim2.new(1, -10, 0, 20), Position = UDim2.new(0, 10, 0, 2),
         BackgroundTransparency = 1, Text = name, TextColor3 = Color3.fromRGB(200, 200, 255),
-        TextSize = 13, Font = Enum.Font.GothamBold, TextXAlignment = Enum.TextXAlignment.Left
-    }, nil).Parent = f
+        TextSize = 13, Font = Enum.Font.GothamBold, TextXAlignment = Enum.TextXAlignment.Left, Parent = f
+    })
     mk("TextLabel", {
         Size = UDim2.new(1, -10, 0, 26), Position = UDim2.new(0, 10, 0, 22),
         BackgroundTransparency = 1, Text = content, TextColor3 = Color3.fromRGB(160, 160, 180),
         TextSize = 11, Font = Enum.Font.Gotham, TextWrapped = true,
-        TextXAlignment = Enum.TextXAlignment.Left
-    }, nil).Parent = f
+        TextXAlignment = Enum.TextXAlignment.Left, Parent = f
+    })
 
     task.spawn(function()
         task.wait(time)
@@ -178,12 +178,12 @@ local function showTip(txt, x, y)
         BackgroundColor3 = Color3.fromRGB(30, 30, 45), BorderSizePixel = 0,
         ZIndex = 1000, Parent = parent
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = _tip
+    mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = _tip})
     mk("TextLabel", {
         Size = UDim2.new(1, -6, 1, 0), Position = UDim2.new(0, 3, 0, 0),
         BackgroundTransparency = 1, Text = txt, TextColor3 = Color3.fromRGB(200, 200, 220),
-        TextSize = 11, Font = Enum.Font.Gotham, ZIndex = 1001
-    }, nil).Parent = _tip
+        TextSize = 11, Font = Enum.Font.Gotham, ZIndex = 1001, Parent = _tip
+    })
 end
 
 local function hideTip()
@@ -206,22 +206,21 @@ function Koli:Dialog(args)
         Size = UDim2.new(0, 300, 0, 0), Position = UDim2.new(0.5, -150, 0.5, -60),
         BackgroundColor3 = theme.Second, BorderSizePixel = 0, Parent = bg
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 6)}, nil).Parent = f
-    mk("UIStroke", {Color = theme.Border}, nil).Parent = f
+    mk("UICorner", {CornerRadius = UDim.new(0, 6), Parent = f})
+    mk("UIStroke", {Color = theme.Border, Parent = f})
     mk("TextLabel", {
         Size = UDim2.new(1, -20, 0, 24), Position = UDim2.new(0, 10, 0, 8),
         BackgroundTransparency = 1, Text = title, TextColor3 = theme.Text,
         TextSize = 14, Font = Enum.Font.GothamBold,
-        TextXAlignment = Enum.TextXAlignment.Left
-    }, nil).Parent = f
+        TextXAlignment = Enum.TextXAlignment.Left, Parent = f
+    })
 
     local cl = mk("TextLabel", {
         Size = UDim2.new(1, -20, 0, 0), Position = UDim2.new(0, 10, 0, 34),
         BackgroundTransparency = 1, Text = text, TextColor3 = Color3.fromRGB(160, 160, 180),
         TextSize = 12, Font = Enum.Font.Gotham, TextWrapped = true,
-        TextXAlignment = Enum.TextXAlignment.Left, RichText = true
-    }, nil)
-    cl.Parent = f
+        TextXAlignment = Enum.TextXAlignment.Left, RichText = true, Parent = f
+    })
 
     -- wait for textbounds
     task.wait()
@@ -237,18 +236,18 @@ function Koli:Dialog(args)
         FillDirection = Enum.FillDirection.Horizontal,
         HorizontalAlignment = Enum.HorizontalAlignment.Center,
         VerticalAlignment = Enum.VerticalAlignment.Center,
-        Padding = UDim.new(0, 8)
-    }, nil).Parent = btnLayout
+        Padding = UDim.new(0, 8), Parent = btnLayout
+    })
 
     for _, b in pairs(btns) do
         local btn = mk("TextButton", {
             Size = UDim2.new(0, 100, 0, 28),
             BackgroundColor3 = b.Color or theme.Accent,
             Text = b.Text, TextColor3 = Color3.new(1, 1, 1),
-            TextSize = 12, Font = Enum.Font.GothamBold, BorderSizePixel = 0
+            TextSize = 12, Font = Enum.Font.GothamBold, BorderSizePixel = 0,
+            Parent = f
         })
-        mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = btn
-        btn.Parent = btnLayout.Parent
+        mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = btn})
         btn.MouseButton1Click:Connect(function()
             pcall(b.Callback); bg:Destroy()
         end)
@@ -298,16 +297,16 @@ function Koli:CreateWindow(args)
         BackgroundColor3 = Theme.Main, BorderSizePixel = 0,
         Active = true, Draggable = true, ClipsDescendants = true, Parent = sg
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 6)}, nil).Parent = main
-    mk("UIStroke", {Color = Theme.Border, Thickness = 1}, nil).Parent = main
+    mk("UICorner", {CornerRadius = UDim.new(0, 6), Parent = main})
+    mk("UIStroke", {Color = Theme.Border, Thickness = 1, Parent = main})
 
     -- header
     local header = mk("Frame", {
         Size = UDim2.new(1, 0, 0, 32), BackgroundColor3 = Theme.Second,
         BorderSizePixel = 0, Parent = main
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 6)}, nil).Parent = header
-    mk("UIStroke", {Color = Theme.Border, Thickness = 1}, nil).Parent = header
+    mk("UICorner", {CornerRadius = UDim.new(0, 6), Parent = header})
+    mk("UIStroke", {Color = Theme.Border, Thickness = 1, Parent = header})
     mk("Frame", {
         Size = UDim2.new(1, 0, 0, 4), Position = UDim2.new(0, 0, 0, 28),
         BackgroundColor3 = Theme.Second, BorderSizePixel = 0, Parent = header
@@ -336,12 +335,12 @@ function Koli:CreateWindow(args)
         Size = UDim2.new(0, 40, 0, 4), Position = UDim2.new(1, -64, 0, 14),
         BackgroundColor3 = Color3.fromRGB(50, 50, 60), BorderSizePixel = 0, Parent = header
     })
-    mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = transBg
+    mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = transBg})
     local transFill = mk("Frame", {
         Size = UDim2.new(1, 0, 1, 0), BackgroundColor3 = Theme.Accent,
         BorderSizePixel = 0, Parent = transBg
     })
-    mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = transFill
+    mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = transFill})
 
     local function updateTrans(p)
         trans = p
@@ -401,7 +400,7 @@ function Koli:CreateWindow(args)
         BackgroundColor3 = Theme.Main, BorderSizePixel = 0, ClipsDescendants = true,
         Parent = main
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = container
+    mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = container})
 
     local pageHolder = mk("Frame", {
         Size = UDim2.new(1, -6, 1, -6), Position = UDim2.new(0, 3, 0, 3),
@@ -661,7 +660,7 @@ function Koli:CreateWindow(args)
             Text = tIcon .. " " .. tName, TextColor3 = Color3.fromRGB(140, 140, 170),
             TextSize = 12, Font = Enum.Font.Gotham, BorderSizePixel = 0, Parent = tabList
         })
-        mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = btn
+        mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = btn})
 
         local page = mk("ScrollingFrame", {
             Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1,
@@ -673,7 +672,7 @@ function Koli:CreateWindow(args)
             Padding = UDim.new(0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center,
             SortOrder = Enum.SortOrder.LayoutOrder, Parent = page
         })
-        mk("UIPadding", {PaddingTop = UDim.new(0, 4)}, nil).Parent = page
+        mk("UIPadding", {PaddingTop = UDim.new(0, 4), Parent = page})
 
         -- tab badge
         local badge = nil
@@ -694,7 +693,7 @@ function Koli:CreateWindow(args)
             TextColor3 = Color3.fromRGB(220, 220, 240), TextSize = 11,
             Font = Enum.Font.Gotham, BorderSizePixel = 0, Parent = searchHolder
         })
-        mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = searchInp
+        mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = searchInp})
         searchInp:GetPropertyChangedSignal("Text"):Connect(function()
             local q = searchInp.Text:lower()
             for _, sec in pairs(tab.sections) do
@@ -724,15 +723,15 @@ function Koli:CreateWindow(args)
                         Size = UDim2.new(0, 18, 0, 14), Position = UDim2.new(1, -8, 0, -6),
                         BackgroundColor3 = Theme.Danger, BorderSizePixel = 0, Parent = btn
                     })
-                    mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = badge
+                    mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = badge})
                 end
                 local bt = badge:FindFirstChildOfClass("TextLabel")
                 if not bt then
                     bt = mk("TextLabel", {
                         Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1,
                         Text = tostring(num), TextColor3 = Color3.new(1, 1, 1),
-                        TextSize = 9, Font = Enum.Font.GothamBold
-                    }, nil).Parent = badge
+                        TextSize = 9, Font = Enum.Font.GothamBold, Parent = badge
+                    })
                 end
                 bt.Text = tostring(num)
                 badge.Visible = true
@@ -765,7 +764,7 @@ function Koli:CreateWindow(args)
                 Size = UDim2.new(1, -8, 0, 0), BackgroundColor3 = Theme.SectionBg,
                 BorderSizePixel = 0, Parent = page, ClipsDescendants = collapsible
             })
-            mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = secFrame
+            mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = secFrame})
 
             local secHeader = mk("Frame", {
                 Size = UDim2.new(1, -10, 0, 24), Position = UDim2.new(0, 5, 0, 2),
@@ -833,7 +832,7 @@ function Koli:CreateWindow(args)
                     BackgroundColor3 = val and Theme.ToggleOn or Theme.ToggleOff,
                     Text = "", BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = tog
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = tog})
 
                 local tl = mk("TextLabel", {
                     Size = UDim2.new(1, -10, 1, 0), Position = UDim2.new(0, 10, 0, 0),
@@ -874,7 +873,7 @@ function Koli:CreateWindow(args)
                     Text = n, TextColor3 = Color3.new(1, 1, 1), TextSize = 12,
                     Font = Enum.Font.Gotham, BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = btn
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = btn})
                 if tooltip ~= "" then
                     btn.MouseEnter:Connect(function() showTip(tooltip, UIS:GetMouseLocation().X, UIS:GetMouseLocation().Y) end)
                     btn.MouseLeave:Connect(hideTip)
@@ -899,19 +898,19 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, 6), BackgroundColor3 = Color3.fromRGB(40, 40, 55),
                     BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = bg
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = bg})
                 local pct = (val - min) / (max - min)
                 local fill = mk("Frame", {
                     Size = UDim2.new(pct, 0, 1, 0), BackgroundColor3 = Theme.Accent,
                     BorderSizePixel = 0, Parent = bg
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = fill
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = fill})
                 local knob = mk("TextButton", {
                     Size = UDim2.new(0, 12, 0, 14), Position = UDim2.new(pct, -6, 0, -4),
                     BackgroundColor3 = Color3.fromRGB(200, 200, 255), Text = "",
                     BorderSizePixel = 0, Parent = bg
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = knob
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = knob})
 
                 -- input on click
                 if args.AllowInput then
@@ -961,14 +960,14 @@ function Koli:CreateWindow(args)
                     TextSize = 12, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                     Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = dd
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = dd})
 
                 local dropFrame = mk("Frame", {
                     Size = UDim2.new(1, 0, 0, 0), BackgroundColor3 = Color3.fromRGB(40, 40, 55),
                     BorderSizePixel = 0, Visible = false, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = dropFrame
-                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = dropFrame
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = dropFrame})
+                mk("UIListLayout", {Padding = UDim.new(0, 2), Parent = dropFrame})
 
                 function refreshDropdown()
                     for _, c in pairs(dropFrame:GetChildren()) do
@@ -982,7 +981,7 @@ function Koli:CreateWindow(args)
                             TextSize = 11, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                             Parent = dropFrame
                         })
-                        mk("UICorner", {CornerRadius = UDim.new(0, 3)}, nil).Parent = ob
+                        mk("UICorner", {CornerRadius = UDim.new(0, 3), Parent = ob})
                         ob.MouseButton1Click:Connect(function()
                             sel = opt; dd.Text = n .. ": " .. sel
                             dropFrame.Visible = false; open = false; pcall(cb, sel)
@@ -1026,14 +1025,14 @@ function Koli:CreateWindow(args)
                     TextSize = 12, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                     Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = dd
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = dd})
 
                 local dropFrame = mk("Frame", {
                     Size = UDim2.new(1, 0, 0, 0), BackgroundColor3 = Color3.fromRGB(40, 40, 55),
                     BorderSizePixel = 0, Visible = false, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = dropFrame
-                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = dropFrame
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = dropFrame})
+                mk("UIListLayout", {Padding = UDim.new(0, 2), Parent = dropFrame})
 
                 function refresh()
                     for _, c in pairs(dropFrame:GetChildren()) do
@@ -1047,7 +1046,7 @@ function Koli:CreateWindow(args)
                             TextSize = 11, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                             Parent = dropFrame
                         })
-                        mk("UICorner", {CornerRadius = UDim.new(0, 3)}, nil).Parent = ob
+                        mk("UICorner", {CornerRadius = UDim.new(0, 3), Parent = ob})
                         ob.MouseButton1Click:Connect(function()
                             selected[opt] = not selected[opt]
                             ob.Text = (selected[opt] and "✓ " or "  ") .. opt
@@ -1087,7 +1086,7 @@ function Koli:CreateWindow(args)
                     Font = Enum.Font.Gotham, BorderSizePixel = 0, ClearTextOnFocus = false,
                     Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = box
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = box})
                 box.FocusLost:Connect(function(enter) if enter then pcall(cb, box.Text) end end)
                 local obj = {}
                 function obj:Get() return box.Text end
@@ -1141,19 +1140,19 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(0, 24, 0, 14), Position = UDim2.new(1, -24, 0, 1),
                     BackgroundColor3 = val, BorderSizePixel = 0, Parent = lbl
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 3)}, nil).Parent = prev
+                mk("UICorner", {CornerRadius = UDim.new(0, 3), Parent = prev})
 
                 local picker = mk("Frame", {
                     Size = UDim2.new(1, 0, 0, 140), BackgroundColor3 = Theme.Third,
                     BorderSizePixel = 0, Visible = false, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = picker
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = picker})
 
                 local hue = mk("Frame", {
                     Size = UDim2.new(1, -10, 0, 12), Position = UDim2.new(0, 5, 0, 5),
                     BorderSizePixel = 0, Parent = picker
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = hue
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = hue})
                 mk("UIGradient", {Color = ColorSequence.new({
                     ColorSequenceKeypoint.new(0, Color3.fromRGB(255,0,0)),
                     ColorSequenceKeypoint.new(0.17, Color3.fromRGB(255,0,255)),
@@ -1162,7 +1161,7 @@ function Koli:CreateWindow(args)
                     ColorSequenceKeypoint.new(0.67, Color3.fromRGB(0,255,0)),
                     ColorSequenceKeypoint.new(0.83, Color3.fromRGB(255,255,0)),
                     ColorSequenceKeypoint.new(1, Color3.fromRGB(255,0,0))
-                })}, nil).Parent = hue
+                }), Parent = hue})
 
                 local satVal = mk("Frame", {
                     Size = UDim2.new(1, -10, 0, 100), Position = UDim2.new(0, 5, 0, 22),
@@ -1172,13 +1171,13 @@ function Koli:CreateWindow(args)
                     Color = ColorSequence.new({
                         ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),
                         ColorSequenceKeypoint.new(1, Color3.fromRGB(255,0,0))
-                    }), Rotation = 90
-                }, nil).Parent = satVal
+                    }), Rotation = 90, Parent = satVal
+                })
                 mk("UIGradient", {
                     Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(0,0,0)), ColorSequenceKeypoint.new(1, Color3.fromRGB(1,1,1))}),
                     Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(1, 0)}),
-                    Rotation = 90
-                }, nil).Parent = satVal
+                    Rotation = 90, Parent = satVal
+                })
 
                 prev.MouseButton1Click:Connect(function() picker.Visible = not picker.Visible end)
 
@@ -1186,11 +1185,11 @@ function Koli:CreateWindow(args)
                 local hKnob = mk("Frame", {
                     Size = UDim2.new(0, 4, 1, 0), BackgroundColor3 = Color3.new(1, 1, 1),
                     BorderSizePixel = 0, Parent = hue
-                }); mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = hKnob
+                }); mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = hKnob})
                 local svKnob = mk("Frame", {
                     Size = UDim2.new(0, 6, 0, 6), BackgroundColor3 = Color3.new(1, 1, 1),
                     BorderSizePixel = 1, BorderColor3 = Color3.new(0, 0, 0), Parent = satVal
-                }); mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = svKnob
+                }); mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = svKnob})
 
                 hue.InputBegan:Connect(function(input)
                     if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -1245,7 +1244,7 @@ function Koli:CreateWindow(args)
                     TextSize = 12, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                     Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = btn
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = btn})
                 btn.MouseButton1Click:Connect(function() lstn = true; btn.Text = n .. ": ..." end)
                 UIS.InputBegan:Connect(function(input, gp)
                     if gp then return end
@@ -1284,12 +1283,12 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, 8), BackgroundColor3 = Color3.fromRGB(40, 40, 55),
                     BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = bg
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = bg})
                 local fill = mk("Frame", {
                     Size = UDim2.new(val / mx, 0, 1, 0), BackgroundColor3 = color,
                     BorderSizePixel = 0, Parent = bg
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = fill
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = fill})
 
                 local obj = {}
                 function obj:Set(v) val = math.clamp(v, 0, mx); fill.Size = UDim2.new(val / mx, 0, 1, 0); lbl.Text = n .. ": " .. val .. "/" .. mx end
@@ -1325,8 +1324,8 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, 0), BackgroundColor3 = Theme.Input,
                     BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = listFrame
-                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = listFrame
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = listFrame})
+                mk("UIListLayout", {Padding = UDim.new(0, 2), Parent = listFrame})
 
                 local function refresh()
                     for _, c in pairs(listFrame:GetChildren()) do
@@ -1344,7 +1343,7 @@ function Koli:CreateWindow(args)
                                     TextSize = 10, Font = Enum.Font.Gotham, TextXAlignment = Enum.TextXAlignment.Left,
                                     BorderSizePixel = 0, Parent = listFrame
                                 })
-                                mk("UICorner", {CornerRadius = UDim.new(0, 3)}, nil).Parent = b
+                                mk("UICorner", {CornerRadius = UDim.new(0, 3), Parent = b})
                                 b.MouseButton1Click:Connect(function()
                                     el:Set(not el:Get())
                                     b.BackgroundColor3 = el:Get() and Theme.ToggleOn or Theme.ToggleOff
@@ -1378,21 +1377,21 @@ function Koli:CreateWindow(args)
                     TextSize = 11, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                     Parent = row
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = saveBtn
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = saveBtn})
                 local loadBtn = mk("TextButton", {
                     Size = UDim2.new(0.5, -3, 0, 24), Position = UDim2.new(0.5, 3, 0, 0),
                     BackgroundColor3 = Theme.Accent, Text = "Yukle",
                     TextColor3 = Color3.new(1, 1, 1), TextSize = 11,
                     Font = Enum.Font.Gotham, BorderSizePixel = 0, Parent = row
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = loadBtn
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = loadBtn})
                 local resetBtn = mk("TextButton", {
                     Size = UDim2.new(0.5, -3, 0, 24), Position = UDim2.new(0, 0, 0, 26),
                     BackgroundColor3 = Theme.Danger, Text = "Sifirla",
                     TextColor3 = Color3.new(1, 1, 1), TextSize = 11,
                     Font = Enum.Font.Gotham, BorderSizePixel = 0, Parent = row
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = resetBtn
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = resetBtn})
                 local cfgName = args.ConfigName or "config"
                 saveBtn.MouseButton1Click:Connect(function() win:SaveConfig(cfgName) end)
                 loadBtn.MouseButton1Click:Connect(function() win:LoadConfig(cfgName) end)
@@ -1411,12 +1410,12 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, 0), BackgroundColor3 = col,
                     BackgroundTransparency = 0.85, BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = box
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = box})
                 local side = mk("Frame", {
                     Size = UDim2.new(0, 3, 1, 0), BackgroundColor3 = col,
                     BorderSizePixel = 0, Parent = box
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = side
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = side})
                 local lbl = mk("TextLabel", {
                     Size = UDim2.new(1, -12, 0, 0), Position = UDim2.new(0, 8, 0, 4),
                     BackgroundTransparency = 1, Text = txt, TextColor3 = col,
@@ -1480,8 +1479,8 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, #opts * 22 + 4),
                     BackgroundColor3 = Theme.Input, BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = groupFrame
-                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = groupFrame
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = groupFrame})
+                mk("UIListLayout", {Padding = UDim.new(0, 2), Parent = groupFrame})
                 local btns = {}
                 for i, opt in pairs(opts) do
                     local b = mk("TextButton", {
@@ -1491,7 +1490,7 @@ function Koli:CreateWindow(args)
                         TextSize = 10, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                         Parent = groupFrame
                     })
-                    mk("UICorner", {CornerRadius = UDim.new(0, 3)}, nil).Parent = b
+                    mk("UICorner", {CornerRadius = UDim.new(0, 3), Parent = b})
                     b.MouseButton1Click:Connect(function()
                         sel = opt
                         for _, ob in pairs(btns) do ob.BackgroundColor3 = ob._opt == sel and Theme.Accent or Theme.Third end
@@ -1541,14 +1540,14 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, h), BackgroundColor3 = Color3.fromRGB(10, 10, 20),
                     BorderSizePixel = 0, ClipsDescendants = true, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = bg
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = bg})
                 local sf = mk("ScrollingFrame", {
                     Size = UDim2.new(1, -6, 1, -6), Position = UDim2.new(0, 3, 0, 3),
                     BackgroundTransparency = 1, BorderSizePixel = 0,
                     ScrollBarThickness = 2, CanvasSize = UDim2.new(0, 0, 0, 0),
                     Parent = bg
                 })
-                mk("UIListLayout", {Padding = UDim.new(0, 2)}, nil).Parent = sf
+                mk("UIListLayout", {Padding = UDim.new(0, 2), Parent = sf})
                 local lines = {}
                 local obj = {}
                 function obj:Log(text, color)
@@ -1590,12 +1589,12 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, 40), BackgroundColor3 = Theme.Third,
                     BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 6)}, nil).Parent = cf
+                mk("UICorner", {CornerRadius = UDim.new(0, 6), Parent = cf})
                 local side = mk("Frame", {
                     Size = UDim2.new(0, 4, 1, 0), BackgroundColor3 = color,
                     BorderSizePixel = 0, Parent = cf
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 6)}, nil).Parent = side
+                mk("UICorner", {CornerRadius = UDim.new(0, 6), Parent = side})
                 local vl = mk("TextLabel", {
                     Size = UDim2.new(1, -12, 0, 18), Position = UDim2.new(0, 10, 0, 2),
                     BackgroundTransparency = 1, Text = tostring(val),
@@ -1624,12 +1623,12 @@ function Koli:CreateWindow(args)
                     Size = UDim2.new(1, 0, 0, 8), BackgroundColor3 = Color3.fromRGB(40, 40, 55),
                     BorderSizePixel = 0, Parent = secContent
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = bg
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = bg})
                 local fill = mk("Frame", {
                     Size = UDim2.new(1, 0, 1, 0), BackgroundColor3 = Theme.Accent,
                     BorderSizePixel = 0, Parent = bg
                 })
-                mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = fill
+                mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = fill})
                 local lbl = mk("TextLabel", {
                     Size = UDim2.new(1, 0, 0, 14), BackgroundTransparency = 1,
                     Text = n .. ": " .. remaining .. "s", TextColor3 = Theme.Text,
@@ -1646,14 +1645,14 @@ function Koli:CreateWindow(args)
                     TextSize = 11, Font = Enum.Font.Gotham, BorderSizePixel = 0,
                     Parent = btnRow
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = startBtn
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = startBtn})
                 local resetBtn = mk("TextButton", {
                     Size = UDim2.new(0.5, -3, 0, 22), Position = UDim2.new(0.5, 3, 0, 0),
                     BackgroundColor3 = Theme.Danger, Text = "Sifirla",
                     TextColor3 = Color3.new(1, 1, 1), TextSize = 11,
                     Font = Enum.Font.Gotham, BorderSizePixel = 0, Parent = btnRow
                 })
-                mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = resetBtn
+                mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = resetBtn})
                 startBtn.MouseButton1Click:Connect(function()
                     running = not running
                     startBtn.Text = running and "Durdur" or "Baslat"
@@ -1757,10 +1756,10 @@ function Koli:ShowContextMenu(items, x, y)
         BackgroundColor3 = Color3.fromRGB(25, 25, 38), BorderSizePixel = 0,
         ZIndex = 999, Parent = parent, ClipsDescendants = true
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = _ctxMenu
-    mk("UIStroke", {Color = Color3.fromRGB(50, 50, 65)}, nil).Parent = _ctxMenu
-    mk("UIListLayout", {Padding = UDim.new(0, 2), SortOrder = Enum.SortOrder.LayoutOrder}, nil).Parent = _ctxMenu
-    mk("UIPadding", {PaddingLeft = UDim.new(0, 3), PaddingRight = UDim.new(0, 3), PaddingTop = UDim.new(0, 2)}, nil).Parent = _ctxMenu
+    mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = _ctxMenu})
+    mk("UIStroke", {Color = Color3.fromRGB(50, 50, 65), Parent = _ctxMenu})
+    mk("UIListLayout", {Padding = UDim.new(0, 2), SortOrder = Enum.SortOrder.LayoutOrder, Parent = _ctxMenu})
+    mk("UIPadding", {PaddingLeft = UDim.new(0, 3), PaddingRight = UDim.new(0, 3), PaddingTop = UDim.new(0, 2), Parent = _ctxMenu})
     for _, item in pairs(items) do
         local b = mk("TextButton", {
             Size = UDim2.new(1, 0, 0, 18),
@@ -1799,7 +1798,7 @@ function Koli:AddRipple(btn, color)
             BackgroundColor3 = color, BackgroundTransparency = 0.6,
             BorderSizePixel = 0, ZIndex = btn.ZIndex + 1, Parent = btn
         })
-        mk("UICorner", {CornerRadius = UDim.new(1, 0)}, nil).Parent = r
+        mk("UICorner", {CornerRadius = UDim.new(1, 0), Parent = r})
         local maxSize = math.max(btn.AbsoluteSize.X, btn.AbsoluteSize.Y) * 2
         TS:Create(r, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
             Size = UDim2.new(0, maxSize, 0, maxSize),
@@ -1885,8 +1884,8 @@ function Koli:MakeTray(text, items)
         BackgroundColor3 = Color3.fromRGB(24, 24, 38), BorderSizePixel = 0,
         Parent = parent, ClipsDescendants = true
     })
-    mk("UICorner", {CornerRadius = UDim.new(0, 4)}, nil).Parent = f
-    mk("UIStroke", {Color = Color3.fromRGB(50, 50, 65)}, nil).Parent = f
+    mk("UICorner", {CornerRadius = UDim.new(0, 4), Parent = f})
+    mk("UIStroke", {Color = Color3.fromRGB(50, 50, 65), Parent = f})
     mk("TextLabel", {
         Size = UDim2.new(1, -30, 1, 0), Position = UDim2.new(0, 8, 0, 0),
         BackgroundTransparency = 1, Text = text, TextColor3 = Color3.fromRGB(200, 200, 220),
@@ -1912,3 +1911,5 @@ function Koli:ToggleAll(winObj, state)
 end
 
 return Koli
+
+
